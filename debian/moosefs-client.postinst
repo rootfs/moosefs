@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -e
+
+case "${1}" in
+	configure)
+		for fname in mfsmount; do
+			if [ -f /etc/mfs/${fname}.cfg.dist ]; then
+				rm -f /etc/mfs/${fname}.cfg.dist
+			fi
+		done
+		;;
+
+	abort-upgrade|abort-remove|abort-deconfigure)
+
+		;;
+
+	*)
+		echo "postinst called with unknown argument \`${1}'" >&2
+		exit 1
+		;;
+esac
+
+#DEBHELPER#
+
+exit 0
